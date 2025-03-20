@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Register</title>
+    <style>
+        /* ========== Global Styles ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #74EBD5, #ACB6E5);  /* Gradient Background */
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #4CAF50;  /* Green border on focus */
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #4CAF50;  /* Green */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Button style for Login and Forgot Password */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #3498db;  /* Blue color */
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;  /* Remove link underline */
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 15px; 
+        }
+
+        .btn:hover {
+            background: #2980b9;  /* Darker Blue on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #555;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            button, .btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Weather App - Register</h1>
+
+    <!-- Registration Form -->
+    <div class="form">
+        <input type="text" id="reg-username" placeholder="Username" required>
+        <input type="email" id="reg-email" placeholder="Email" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <input type="tel" id="reg-number" placeholder="Phone Number" required>
+        <button onclick="register()">Register</button>
+    </div>
+
+    <!-- Options with Button Style -->
+    <div class="options">
+        <p>Already have an account?</p>
+        <a href="login.html" class="btn">Login</a>
+        <a href="forgot-password.html" class="btn">Forgot Password?</a>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
