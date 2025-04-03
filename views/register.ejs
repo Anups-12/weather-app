@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+
+    <!-- ✅ Improved Embedded CSS -->
+    <style>
+        /* ========== Global Reset ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #74EBD5, #ACB6E5);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ========== Container Styling ========== */
+        .container {
+            background: #fff;
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        /* ========== Form Styling ========== */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        button {
+            background: #3498db;
+            color: #fff;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: #2980b9;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========== Link Styling ========== */
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #1abc9c;
+            text-decoration: underline;
+        }
+
+        /* ========== Error Message Styling ========== */
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* ========== Mobile Responsiveness ========== */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Register</h1>
+    <span class="error-message"><%= message %></span>
+    
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="/">Login here</a></p>
+</div>
+
+</body>
+</html>

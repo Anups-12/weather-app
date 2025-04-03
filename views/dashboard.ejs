@@ -1,0 +1,239 @@
+<%- include('header') %> <!-- Include Header -->
+
+<!-- ✅ Navigation Bar -->
+<nav class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/logout">Logout</a></li> 
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>🌍 Live Weather Dashboard</h1>
+
+    <!-- ✅ Search Form -->
+    <form action="/weather" method="GET">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <!-- 🔥 Weather Display -->
+    <% if (weather) { %>
+        <div class="weather-card">
+            <h2>🌆 <%= weather.city %></h2>
+            <img src="<%= weather.icon %>" alt="Weather Icon" class="weather-icon">
+            <p>🌡️ Temperature: <span><%= weather.temperature %>°C</span></p>
+            <p>💧 Humidity: <span><%= weather.humidity %>%</span></p>
+            <p>💨 Wind: <span><%= weather.windSpeed %> km/h</span></p>
+            <p>🌤️ Condition: <span><%= weather.description %></span></p>
+        </div>
+
+        <!-- ✅ Additional Weather Details -->
+        <div class="details-section">
+            <div class="details-card">
+                <h3>🌅 Sunrise</h3>
+                <p>06:30 AM</p>
+            </div>
+            <div class="details-card">
+                <h3>🌇 Sunset</h3>
+                <p>06:45 PM</p>
+            </div>
+            <div class="details-card">
+                <h3>📍 Coordinates</h3>
+                <p>Lat: 28.6139, Lon: 77.2090</p>
+            </div>
+        </div>
+        
+    <% } else if (error) { %>
+        <p class="error-message">❌ <%= error %></p>
+    <% } %>
+</div>
+
+<!-- ✅ High-End Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>Your trusted source for real-time weather updates.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: support@weatherapp.com</p>
+            <p>Phone: +91 98765 43210</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 WeatherApp. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<%- include('footer') %> <!-- Include Footer -->
+
+<!-- ✅ Styling -->
+<style>
+    /* 🌟 Global Styles */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #74EBD5, #ACB6E5);
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 🌐 Navigation Bar */
+    .navbar {
+        background: #2c3e50;
+        color: #fff;
+        width: 100%;
+        padding: 15px 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+        transition: all 0.3s;
+        padding: 10px 15px;
+    }
+
+    .navbar ul li a:hover {
+        color: #74EBD5;
+        background: #34495e;
+        border-radius: 5px;
+    }
+
+    /* 🌤️ Main Container */
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* ✅ Footer Styles */
+    .footer {
+        background: #2c3e50;
+        color: #fff;
+        padding: 50px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+    }
+
+    .footer-section {
+        margin: 20px;
+        text-align: left;
+    }
+
+    .footer-section h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #74EBD5;
+    }
+
+    .footer-section p, .footer-section a {
+        font-size: 16px;
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+        color: #3498db;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin: 0 10px;
+        font-size: 22px;
+        color: #ccc;
+        transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+        color: #3498db;
+    }
+
+    .footer-bottom {
+        background: #1a252f;
+        padding: 15px 0;
+        color: #ccc;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    /* ✨ Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
