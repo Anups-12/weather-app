@@ -1,0 +1,196 @@
+<%- include('header') %> <!-- Include Header -->
+
+<div class="container">
+    <h1><b> Welcome to the Login Page </b></h1>
+
+    <!-- ✅ Flash Messages -->
+    <% if (message) { %>
+        <div class="alert <%= message.includes('successful') ? 'success' : 'error' %>">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <!-- ✅ Login Form -->
+    <form action="/login" method="POST" class="form"> 
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- ✅ Options -->
+    <div class="options">
+        <p>Don't have an account?</p>
+        <a href="/register" class="btn">Register</a>
+        <a href="/forgot-password" class="btn">Forgot Password?</a>
+    </div>
+</div>
+
+<%- include('footer') %> <!-- Include Footer -->
+
+<!-- ✅ Styling -->
+<style>
+    /* ========== Global Styles ========== */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #FF9A9E, #FAD0C4);
+        color: #333;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 450px;
+        background: #ffffff;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        animation: fadeIn 0.8s ease;
+    }
+
+    .container:hover {
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        color: #2c3e50;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        background: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .btn:hover {
+        background: #2980b9;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        color: #555;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    /* ✅ Flash Messages */
+    .alert {
+        padding: 15px;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        text-align: center;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .alert.success {
+        background: #4CAF50;
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.6);
+    }
+
+    .alert.error {
+        background: #e74c3c;
+        box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
+    }
+
+    /* ✅ Animation */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ========== Responsive Design ========== */
+    @media (max-width: 768px) {
+        .container {
+            width: 90%;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 95%;
+            padding: 25px;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        button, .btn {
+            font-size: 14px;
+        }
+    }
+</style>
