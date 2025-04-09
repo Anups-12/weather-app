@@ -30,6 +30,11 @@
       background: var(--bg-light);
       color: var(--text-light);
       transition: background 0.3s, color 0.3s;
+      background-image: url('/assets/ChatGPT%20Image%20Apr%209,%202025,%2005_45_09%20PM%20(1).png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
     }
 
     body.dark {
@@ -37,47 +42,48 @@
       color: var(--text-dark);
     }
 
-    /* Navbar styles */
     .navbar {
-      background-color: #1e1e2f;
-      padding: 16px 32px;
+      padding: 10px 95px;
       color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 16px;
+      margin: 20px auto;
+      max-width: 1400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
     }
 
     .navbar-container {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      max-width: 1600px;
-      margin: auto;
-      width: 100%;
     }
 
     .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.4rem;
+      font-weight: 600;
       color: #ffffff;
     }
 
     .navbar-menu {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
+      gap: 30px;
+      align-items: center;
       padding: 0;
       margin: 0;
     }
 
     .navbar-menu li a {
-      text-decoration: none;
       color: #ffffff;
+      text-decoration: none;
       font-weight: 500;
+      font-size: 15px;
       transition: color 0.3s ease;
     }
 
@@ -86,16 +92,19 @@
     }
 
     .logout-btn {
-      background-color: #e53935;
-      padding: 6px 12px;
-      border-radius: 4px;
+      background-color: #ff3366;
+      padding: 8px 16px;
+      border-radius: 20px;
       font-weight: bold;
       color: white !important;
-      transition: background-color 0.3s ease;
+      border: none;
+      font-size: 14px;
+      transition: background-color 0.3s ease, transform 0.2s;
     }
 
     .logout-btn:hover {
-      background-color: #c62828;
+      background-color: #cc2954;
+      transform: scale(1.05);
     }
 
     .container {
@@ -156,12 +165,12 @@
 
     .toggle {
       margin-left: auto;
-      padding: 10px 90px;
+      padding: 5px 15px;
       cursor: pointer;
       border: 2px solid var(--primary);
       background: transparent;
       color: var(--primary);
-      border-radius: 20px;
+      border-radius: 30px;
       font-size: 15px;
     }
 
@@ -179,15 +188,20 @@
     }
 
     .hour-card {
-      background-color: var(--card-light);
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 20px;
       transition: transform 0.3s, background 0.3s;
       word-wrap: break-word;
+      color: white;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
     body.dark .hour-card {
-      background-color: var(--card-dark);
+      background-color: rgba(30, 30, 30, 0.3);
+      color: white;
     }
 
     .hour-card:hover {
@@ -196,6 +210,39 @@
 
     .hour-card img {
       width: 40px;
+    }
+
+    .weather-data {
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    /* Footer styles */
+    footer {
+      margin-top: 40px;
+      padding: 30px 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    body.dark footer {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    footer a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media screen and (max-width: 768px) {
@@ -218,23 +265,20 @@
 </head>
 <body>
 
-  <!-- Top Navbar -->
-<nav class="navbar">
-  <div class="navbar-container">
-    <div class="navbar-brand">My Dashboard</div>
-    <ul class="navbar-menu">
-      <li><a href="/dashboard">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/services">Services</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/faq">FAQs</a></li>
-      <li><a href="/logout" class="logout-btn">Logout</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">My Dashboard</div>
+      <ul class="navbar-menu">
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq">FAQs</a></li>
+        <li><a href="/logout" class="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 
-
-  <!-- Main content -->
   <div class="container">
     <header>
       <div class="search-container">
@@ -247,16 +291,17 @@
     </header>
 
     <% if (error) { %>
-      <h2><%= error %></h2>
+      <h2 class="weather-data"><%= error %></h2>
     <% } else if (weather) { %>
-      <h1>Weather in <%= weather.city %>, <%= weather.country %></h1>
-      <img src="<%= weather.icon %>" alt="icon" />
-      <p>Condition: <%= weather.condition %></p>
-      <p>Temperature: <%= weather.temperature %> °C</p>
-      <p>Humidity: <%= weather.humidity %>%</p>
-      <p>Wind Speed: <%= weather.windSpeed %> km/h</p>
-      <p><strong>Pressure:</strong> <%= weather.pressure %> mb</p>
-
+      <div class="weather-data">
+        <h1>Weather in <%= weather.city %>, <%= weather.country %></h1>
+        <img src="<%= weather.icon %>" alt="icon" />
+        <p>Condition: <%= weather.condition %></p>
+        <p>Temperature: <%= weather.temperature %> °C</p>
+        <p>Humidity: <%= weather.humidity %>%</p>
+        <p>Wind Speed: <%= weather.windSpeed %> km/h</p>
+        <p><strong>Pressure:</strong> <%= weather.pressure %> mb</p>
+      </div>
       <h2>🕒 Hourly Forecast</h2>
       <div class="hourly">
         <% if (hourly && hourly.length) { %>
@@ -280,6 +325,17 @@
       </div>
     <% } %>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>🌤️ Weather Dashboard — Stay updated with real-time weather insights.</p>
+    <p>
+      <a href="/privacy">Privacy Policy</a> |
+      <a href="/terms">Terms of Service</a> |
+      <a href="/support">Support</a>
+    </p>
+    <p>&copy; <%= new Date().getFullYear() %> WeatherIQ. All rights reserved.</p>
+  </footer>
 
   <script>
     function toggleTheme() {

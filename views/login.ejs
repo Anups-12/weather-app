@@ -1,9 +1,17 @@
 <%- include('header') %> <!-- Include Header -->
 
-<div class="container">
-    <h1><b> Welcome to the Login Page </b></h1>
+<!-- ✅ Error Popup (conditionally shown) -->
+<% if (typeof error !== 'undefined' && error.length > 0) { %>
+<div class="popup show">
+    <div class="popup-content">
+        <p><%= error[0] %></p>
+        <button onclick="document.querySelector('.popup').classList.remove('show')">OK</button>
+    </div>
+</div>
+<% } %>
 
-    
+<div class="container">
+    <h1><b> Welcome to WeatherApp </b></h1>
 
     <!-- ✅ Login Form -->
     <form action="/login" method="POST" class="form"> 
@@ -32,36 +40,48 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    html, body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+
     body {
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #FF9A9E, #FAD0C4);
-        color: #333;
+        background: var(--bg-light);
+        color: var(--text-light);
+        transition: background 0.3s, color 0.3s;
+        background-image: url('/assets/ChatGPT%20Image%20Apr%209,%202025,%2005_45_09%20PM%20(1).png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .container {
         width: 100%;
         max-width: 450px;
-        background: #ffffff;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        border-radius: 12px;
-        padding: 40px;
+        background: transparent;
+        box-shadow: 0 10px 30px rgba(158, 139, 139, 0.3);
+        border-radius: 16px;
+        padding: 50px 40px;
         text-align: center;
+        color: #fffcfc;
         transition: all 0.3s ease-in-out;
         animation: fadeIn 0.8s ease;
+        backdrop-filter: blur(5px);
     }
 
     .container:hover {
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
         transform: translateY(-5px);
     }
 
     h1 {
         margin-bottom: 20px;
         font-size: 28px;
-        color: #2c3e50;
+        color: #f5f7f8;
     }
 
     .form {
@@ -124,12 +144,12 @@
     }
 
     p {
-        color: #555;
+        color: #fefefe;
         margin-top: 15px;
         font-size: 14px;
     }
 
-    /* ✅ Flash Messages */
+    /* ✅ Flash Alert Fallback (if using express-flash directly) */
     .alert {
         padding: 15px;
         color: #fff;
@@ -150,7 +170,7 @@
         box-shadow: 0 0 12px rgba(231, 76, 60, 0.6);
     }
 
-    /* ✅ Animation */
+    /* ✅ Animations */
     @keyframes fadeIn {
         0% {
             opacity: 0;
@@ -160,6 +180,66 @@
             opacity: 1;
             transform: translateY(0);
         }
+    }
+
+    @keyframes slideUp {
+        0% {
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* ✅ Popup Styles */
+    .popup {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .popup.show {
+        display: flex;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .popup-content {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.4s ease;
+        max-width: 90%;
+    }
+
+    .popup-content p {
+        font-size: 16px;
+        color: #e74c3c;
+        margin-bottom: 20px;
+    }
+
+    .popup-content button {
+        padding: 10px 20px;
+        background: #e74c3c;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .popup-content button:hover {
+        background: #c0392b;
     }
 
     /* ========== Responsive Design ========== */

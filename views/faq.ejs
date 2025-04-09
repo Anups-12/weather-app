@@ -5,12 +5,9 @@
   <title>FAQs - Weather App</title>
   <style>
     :root {
-      --bg-light: #ffffff;
-      --bg-dark: #121212;
-      --text-light: #000000;
-      --text-dark: #ffffff;
-      --card-light: #f7f7f7;
-      --card-dark: #1e1e1e;
+      
+      --text-light: #ffffff;
+      --card-light: transparen;
       --primary: #007bff;
     }
 
@@ -20,6 +17,11 @@
       background: var(--bg-light);
       color: var(--text-light);
       transition: background 0.3s, color 0.3s;
+      background-image: url('/assets/ChatGPT%20Image%20Apr%209,%202025,%2005_45_09%20PM%20(1).png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
     }
 
     body.dark {
@@ -29,13 +31,13 @@
 
     .navbar {
       background-color: #1e1e2f;
-      padding: 16px 32px;
+      padding: 10px 95px;
       color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+     
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100%;
+      width: 90%;
     }
 
     .navbar-container {

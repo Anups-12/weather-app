@@ -8,6 +8,7 @@ const flash = require("connect-flash");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const path = require("path");
 
 dotenv.config();
 const app = express();
@@ -16,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 app.set("view engine", "ejs");
 
@@ -29,8 +30,14 @@ app.use(session({
 
 app.use(flash());
 
+// Make flash messages available in all views
+app.use((req, res, next) => {
+    res.locals.message = req.flash("message");
+    next();
+});
+
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("✅ Connected to MongoDB"))
     .catch((error) => console.error(`❌ MongoDB connection error: ${error}`));
 
@@ -64,6 +71,7 @@ const preventBack = (req, res, next) => {
 // Authentication Middleware
 const requireAuth = (req, res, next) => {
     if (!req.session.user) {
+        req.flash("message", "Please login to access this page.");
         return res.redirect("/");
     }
     next();
@@ -71,14 +79,17 @@ const requireAuth = (req, res, next) => {
 
 // ROUTES
 
+// Login Page
 app.get("/", (req, res) => {
-    res.render("login", { message: req.flash("message") });
+    res.render("login");
 });
 
+// Register Page
 app.get("/register", (req, res) => {
-    res.render("register", { message: req.flash("message") });
+    res.render("register");
 });
 
+// Register Handler
 app.post("/register", async (req, res) => {
     const { username, email, password } = req.body;
     try {
@@ -101,6 +112,7 @@ app.post("/register", async (req, res) => {
     }
 });
 
+// Login Handler
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -114,15 +126,15 @@ app.post("/login", async (req, res) => {
         res.redirect("/dashboard");
     } catch (error) {
         console.error(error);
-        req.flash("message", "Server error, try again.");
+        req.flash("message", "Login failed. Try again.");
         res.redirect("/");
     }
 });
 
-// ✅ WEATHER DASHBOARD with WeatherAPI
+// Dashboard (WeatherAPI)
 app.get("/dashboard", requireAuth, preventBack, async (req, res) => {
     const city = req.query.city || "Delhi";
-    const apiKey = "57bf61198e014b2783374712250904"; // WeatherAPI key
+    const apiKey = "57bf61198e014b2783374712250904";
 
     try {
         const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=1&aqi=no&alerts=no`);
@@ -164,7 +176,7 @@ app.get("/dashboard", requireAuth, preventBack, async (req, res) => {
     }
 });
 
-// ✅ Extra Pages (Protected Routes)
+// Extra Pages
 app.get("/about", requireAuth, preventBack, (req, res) => {
     res.render("about");
 });
@@ -181,9 +193,9 @@ app.get("/faq", requireAuth, preventBack, (req, res) => {
     res.render("faq");
 });
 
-// ✅ Forgot Password
+// Forgot Password
 app.get("/forgot-password", (req, res) => {
-    res.render("forgot-password", { message: req.flash("message") });
+    res.render("forgot-password");
 });
 
 app.post("/forgot-password", async (req, res) => {
@@ -223,7 +235,7 @@ app.post("/forgot-password", async (req, res) => {
     }
 });
 
-// ✅ Logout
+// Logout
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
         res.clearCookie("connect.sid");
@@ -234,4 +246,5 @@ app.get("/logout", (req, res) => {
     });
 });
 
+// Start Server
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
