@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQs - Weather App</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #121212;
+      --text-light: #000000;
+      --text-dark: #ffffff;
+      --card-light: #f7f7f7;
+      --card-dark: #1e1e1e;
+      --primary: #007bff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .navbar {
+      background-color: #1e1e2f;
+      padding: 16px 32px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1600px;
+      margin: auto;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar-menu li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu li a:hover {
+      color: #00bcd4;
+    }
+
+    .logout-btn {
+      background-color: #e53935;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: white !important;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #c62828;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: var(--card-light);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+
+    body.dark .container {
+      background-color: var(--card-dark);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .faq {
+      margin-top: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 15px 20px;
+      background-color: var(--card-light);
+      border-top: 1px solid #ccc;
+    }
+
+    body.dark .faq-answer {
+      background-color: var(--card-dark);
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .toggle {
+      margin: 30px auto 0;
+      display: block;
+      padding: 10px 60px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .toggle:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">My Dashboard</div>
+      <ul class="navbar-menu">
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq">FAQs</a></li>
+        <li><a href="/logout" class="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- FAQs -->
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-question">What is the Weather App?</div>
+        <div class="faq-answer">Our Weather App provides accurate and real-time weather data using the WeatherAPI, including hourly forecasts, current conditions, and more.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Which cities are supported?</div>
+        <div class="faq-answer">You can search for weather in any city worldwide! Just type the city name in the search bar and get detailed forecasts instantly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How often is the weather data updated?</div>
+        <div class="faq-answer">Our data is updated hourly using the latest feeds from WeatherAPI to ensure you always get the most recent weather reports.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I toggle dark/light mode?</div>
+        <div class="faq-answer">Click the "Toggle Theme" button to switch between light and dark mode. Your preference is saved for future visits.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Is it free to use?</div>
+        <div class="faq-answer">Yes! Our Weather Dashboard is completely free for users to access weather data and forecasts.</div>
+      </div>
+    </div>
+
+    <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        document.body.classList.add('dark');
+      }
+
+      // FAQ toggle
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => {
+          item.classList.toggle('active');
+        });
+      });
+    };
+  </script>
+</body>
+</html>
