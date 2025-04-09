@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Services - Weather App</title>
+  <style>
+    :root {
+      
+      --text-light: #ffffff;
+      --card-light: transparen;
+      --primary: #007bff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+      background-image: url('/assets/ChatGPT%20Image%20Apr%209,%202025,%2005_45_09%20PM%20(1).png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .navbar {
+      background-color: #1e1e2f;
+      padding: 10px 95px;
+      color: white;
+     
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 90%;
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1600px;
+      margin: auto;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar-menu li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu li a:hover {
+      color: #00bcd4;
+    }
+
+    .logout-btn {
+      background-color: #e53935;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: white !important;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #c62828;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: var(--card-light);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+
+    body.dark .container {
+      background-color: var(--card-dark);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .service {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-left: 5px solid var(--primary);
+      background-color: rgba(0, 123, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .service h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .service p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .toggle {
+      margin: 30px auto 0;
+      display: block;
+      padding: 10px 60px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .toggle:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .service h2 {
+        font-size: 1.4rem;
+      }
+
+      .service p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">My Dashboard</div>
+      <ul class="navbar-menu">
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/faq">FAQs</a></li>
+        <li><a href="/logout" class="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Services Content -->
+  <div class="container">
+    <h1>Our Services</h1>
+
+    <div class="service">
+      <h2>🌍 Global Weather Forecast</h2>
+      <p>Access real-time weather updates from any city in the world. Our API-backed service ensures you receive the most accurate and up-to-date information available.</p>
+    </div>
+
+    <div class="service">
+      <h2>🕒 Hourly Breakdown</h2>
+      <p>Plan your day efficiently with detailed hourly data including temperature, humidity, wind speed, cloud coverage, and more — perfect for both daily and travel planning.</p>
+    </div>
+
+    <div class="service">
+      <h2>🎨 Light/Dark Theme Mode</h2>
+      <p>Enjoy a seamless visual experience with our theme toggle feature. Choose between bright or dark layouts that suit your preference and reduce eye strain.</p>
+    </div>
+
+    <div class="service">
+      <h2>🔐 User Authentication</h2>
+      <p>Sign up and log in to save your favorite cities, customize your experience, and keep your data secure with encrypted authentication and session handling.</p>
+    </div>
+
+    <div class="service">
+      <h2>📈 Easy-to-Read UI</h2>
+      <p>Our dashboard is built with simplicity in mind — responsive grids, color-coded icons, and user-friendly layout make navigation and understanding the weather intuitive.</p>
+    </div>
+
+    <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        document.body.classList.add('dark');
+      }
+    };
+  </script>
+</body>
+</html>
