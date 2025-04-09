@@ -3,12 +3,7 @@
 <div class="container">
     <h1><b> Welcome to the Login Page </b></h1>
 
-    <!-- ✅ Flash Messages -->
-    <% if (message) { %>
-        <div class="alert <%= message.includes('successful') ? 'success' : 'error' %>">
-            <%= message %>
-        </div>
-    <% } %>
+    
 
     <!-- ✅ Login Form -->
     <form action="/login" method="POST" class="form"> 
